@@ -9,6 +9,8 @@
 #include "rocksdb/db.h"
 #include "rocksdb/slice.h"
 #include "rocksdb/options.h"
+#include "mongoose.h"
+#include "json/json.h"
 
 using namespace rocksdb;
 using namespace std;
@@ -24,7 +26,7 @@ int main() {
 
   // open DB
   Status s = DB::Open(options, kDBPath, &db);
-  std::cout << s.ToString() << std::endl;
+ // std::cout << s.ToString() << std::endl;
 
   assert(s.ok());
 
