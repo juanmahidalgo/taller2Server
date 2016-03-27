@@ -1,70 +1,60 @@
 # taller2Server
 
-Instalamos CMake
+1- Instalar CMake
+	- sudo apt-get install cmake
 
-Ejecutar el siguiente comando a partir de una nueva terminal
+2 - Instalación de RocksDB
 
-a. sudo su
+	- Descargar el ultimo release de: https://github.com/facebook/rocksdb/archive/master.zip
 
-b. apt-get install cmake
+	- Descomprimir el archivo "rocksdb-master.zip"
 
-Instalación de la librería RocksDB
+	- Ingresar a la carpeta "rocksdb-master" en una terminal
 
-Descargamos los fuentes del RocksDB desde el siguiente link
+	- Ingresar como sudo su
 
-a. https://github.com/facebook/rocksdb/archive/master.zip
+	- Ejecutar los sig comandos:
 
-Descomprimir el archivo "rocksdb-master.zip"
+		- make all
 
-Ingresar a la carpeta "rocksdb-master" a partir de una nueva terminal
+		- make install
 
-Ejecutar el siguiente comando para tener permisos de administrador
+Instalar las siguientes librerias tambien:
 
-a. sudo su
+	apt-get install libgflags-dev
 
-Ejecutar el siguiente comando
+	apt-get install libsnappy-dev
 
-a. make all
+	apt-get install zlib1g-dev
 
-b. make install
+	apt-get install libbz2-dev
 
-Ejecutar los siguientes comandos
 
-a. apt-get install libgflags-dev
+3 - Instalación de la librería jsoncpp
 
-b. apt-get install libsnappy-dev
+	- Bajar el ultimo release de este link
 
-c. apt-get install zlib1g-dev
+		a. https://github.com/open-source-parsers/jsoncpp/archive/master.zip
 
-d. apt-get install libbz2-dev
+	- Descomprimir el archivo "jsoncpp-master"
 
-Instalación de la librería jsoncpp
+	- Ingresar a la carpeta "jsoncpp-master" en una terminal
 
-Descargamos los fuentes de jsoncpp desde el siguiente link
+	- Entrar con sudo su en la terminal
 
-a. https://github.com/open-source-parsers/jsoncpp/archive/master.zip
+	- Ejecutar los siguientes comandos
 
-Descomprimir el archivo "jsoncpp-master"
+		mkdir -p build/debug
 
-Ingresar a la carpeta "jsoncpp-master" a partir de una nueva terminal
+		cd build/debug
 
-Ejecutar el siguiente comando a partir de una nueva terminal
+		cmake -DCMAKE_BUILD_TYPE=debug -DJSONCPP_LIB_BUILD_STATIC=ON -DJSONCPP_LIB_BUILD_SHARED=OFF -G 			"Unix Makefiles" ../..
 
-a. sudo su
+    	make
 
-Ejecutar los siguientes comandos
+	- Ingresar a la carpeta "/src/lib_json"
 
-a. mkdir -p build/debug
+	- Ejecutar el comando: cp -a libjsoncpp.a /usr/local/lib
 
-b. cd build/debug
-
-c. cmake -DCMAKE_BUILD_TYPE=debug -DJSONCPP_LIB_BUILD_STATIC=ON -DJSONCPP_LIB_BUILD_SHARED=OFF -G "Unix Makefiles" ../..
-
-d. make
-
-Ingresar a la carpeta "/src/lib_json"
-
-Ejecutar el siguiente comando
-
-a. cp -a libjsoncpp.a /usr/local/lib
+ 
 

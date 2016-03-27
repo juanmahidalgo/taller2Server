@@ -8,11 +8,11 @@
 #ifndef MESSAGE_H_
 #define MESSAGE_H_
 
-#include "json/json.h"
 #include "User.h"
+#include <iostream>
 
 using namespace std;
-using namespace Json;
+//using namespace Json;
 
 
 class Message {

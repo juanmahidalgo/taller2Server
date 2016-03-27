@@ -7,8 +7,11 @@
 
 #include "Message.h"
 
-Message::Message() {
+Message::Message(User* sender, User* receptor, string data ) {
 	// TODO Auto-generated constructor stub
+	this->sender = sender;
+	this->receptor = receptor;
+	this->data = data;
 
 }
 

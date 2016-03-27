@@ -10,7 +10,6 @@
 #include "rocksdb/slice.h"
 #include "rocksdb/options.h"
 #include "mongoose.h"
-#include "json/json.h"
 
 using namespace rocksdb;
 using namespace std;

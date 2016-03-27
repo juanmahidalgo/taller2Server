@@ -8,6 +8,7 @@ CPP_SRCS += \
 ../src/Message.cpp \
 ../src/Server.cpp \
 ../src/User.cpp \
+../src/jsoncpp.cpp \
 ../src/match.cpp 
 
 C_SRCS += \
@@ -18,6 +19,7 @@ OBJS += \
 ./src/Message.o \
 ./src/Server.o \
 ./src/User.o \
+./src/jsoncpp.o \
 ./src/match.o \
 ./src/mongoose.o 
 
@@ -26,6 +28,7 @@ CPP_DEPS += \
 ./src/Message.d \
 ./src/Server.d \
 ./src/User.d \
+./src/jsoncpp.d \
 ./src/match.d 
 
 C_DEPS += \
@@ -36,7 +39,7 @@ C_DEPS += \
 src/%.o: ../src/%.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C++ Compiler'
-	g++ -O0 -g3 -Wall -c -fmessage-length=0 -std=c++11 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
+	g++ -O0 -g3 -Wall -c -fmessage-length=0 -std=c++11 -lJsoncpp -lopencv_java -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 

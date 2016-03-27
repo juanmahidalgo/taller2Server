@@ -7,6 +7,7 @@
 
 #include "User.h"
 
+
 User::User(string name) {
 	this->username = name;
 	this->locationX = 0;
@@ -63,3 +64,25 @@ const string& User::getUsername() const {
 void User::setUsername(const string& username) {
 	this->username = username;
 }
+
+
+string User::getJsonString() {
+	Json::StreamWriterBuilder builder;
+	builder.settings_["identation"] = "\t";
+	return Json::writeString(builder,this->getJson());
+}
+
+Json::Value User::getJson() {
+	Json::Value value(Json::objectValue);
+	value["username"] = this->username;
+	value["password"] = this->password;
+	value["name"] = this->name;
+	value["token"] = this->token;
+	value["locationX"] = this->locationX;
+	value["locationY"] = this->locationY;
+	value["perfilImage"] = this->perfilImage;
+
+	return value;
+}
+
+

@@ -7,14 +7,17 @@
 
 #include "Database.h"
 
+std::string DBpath = "./database";
+
+
 Database::Database() {
 	Options options;
 	  // create the DB if it's not already present
 	options.create_if_missing = true;
 	  // open DB
-	Status s = DB::Open(options, kDBPath, &database);
+	Status s = DB::Open(options, DBpath, &database);
 	 // std::cout << s.ToString() << std::endl;
-	if(s.ok){
+	if(s.ok()){
 		s = database->CreateColumnFamily(ColumnFamilyOptions(), "UsersTable", &this->usersTable);
 		assert(s.ok());
 		s = database->CreateColumnFamily(ColumnFamilyOptions(), "messagesTable", &this->messagesTable);
@@ -57,20 +60,26 @@ Database::~Database() {
 
 bool Database::put(string key, string value){
 	Status s = database->Put(WriteOptions(), key, value);
-	return s.ok;
+	return s.ok();
+}
+
+bool Database::putInTable(ColumnFamilyHandle* tableHandler, string key, string value){
+	Status s = database->Put(WriteOptions(), tableHandler, key, value);
+	return s.ok();
 }
 
 string Database::get(string key, string value){
 	Status s = database->Get(ReadOptions(), key, &value);
-	return s.ok;
+	return value;
 }
 
 
 
 bool Database::saveUser(User* user) {
 	string username = user->getUsername();
-	string json = user->toJsonString();
-	return this->put(this->userCF,username,json);
+	//string json = user->getJsonString();
+	//return this->putInTable(this->usersTable,username,json);
+	return true;
 }
 
 Message* Database::getMessage(string key){

@@ -4,5 +4,5 @@
 
 USER_OBJS :=
 
-LIBS := -lrocksdb
+LIBS := -ljsoncpp -lrocksdb
 

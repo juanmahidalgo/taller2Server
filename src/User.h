@@ -8,16 +8,21 @@
 #ifndef USER_H_
 #define USER_H_
 
+
+#include "json/json.h"
+#include <iostream>
+
+
 using namespace std;
+using namespace Json;
+
 
 class User {
 public:
 	User(string username);
 	virtual ~User();
 	string getName();
-	void setName(string name);
 	string getPassword();
-	void setName(string name);
 	double getLocationX() const;
 	void setLocationX(double locationX);
 	double getLocationY() const;
@@ -29,15 +34,17 @@ public:
 	void setToken(const string& token);
 	const string& getUsername() const;
 	void setUsername(const string& username);
+	string getJsonString();
+	Json::Value getJson();
 
 private:
-	string password;
 	string username;
+	string name;
+	string password;
 	double locationX;
 	double locationY;
 	string perfilImage;
 	string token;
-
 };
 
 #endif /* USER_H_ */

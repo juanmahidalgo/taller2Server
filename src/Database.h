@@ -30,6 +30,8 @@ public:
 	Message* getMessage(string key);
 	bool saveMessage(Message* message);
 	virtual ~Database();
+	bool putInTable(ColumnFamilyHandle* tableHandler, string key, string value);
+
 
 private:
 	DB* database;
