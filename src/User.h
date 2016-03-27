@@ -36,6 +36,7 @@ public:
 	void setUsername(const string& username);
 	string getJsonString();
 	Json::Value getJson();
+	void initWithJson(Json::Value value);
 
 private:
 	string username;

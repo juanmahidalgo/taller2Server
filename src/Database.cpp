@@ -28,6 +28,7 @@ Database::Database() {
 
 	  assert(s.ok());
 
+	  /*
 	  // Put key-value
 	  s = database->Put(WriteOptions(), "key1", "value");
 	  assert(s.ok());
@@ -51,7 +52,7 @@ Database::Database() {
 	  database->Get(ReadOptions(), "key2", &value);
 	  assert(value == "value");
 
-
+	*/
 }
 
 Database::~Database() {
@@ -63,28 +64,45 @@ bool Database::put(string key, string value){
 	return s.ok();
 }
 
-bool Database::putInTable(ColumnFamilyHandle* tableHandler, string key, string value){
-	Status s = database->Put(WriteOptions(), tableHandler, key, value);
-	return s.ok();
-}
-
 string Database::get(string key, string value){
 	Status s = database->Get(ReadOptions(), key, &value);
 	return value;
 }
 
+bool Database::putInTable(ColumnFamilyHandle* tableHandler, string key, string value){
+	Status s = database->Put(WriteOptions(), tableHandler, key, value);
+	return s.ok();
+}
 
+string Database::getFromTable(ColumnFamilyHandle* tableHandler, string key){
+	string value;
+	Status s = database->Get(ReadOptions(), key, &value);
+	return value;
+}
 
 bool Database::saveUser(User* user) {
 	string username = user->getUsername();
-	//string json = user->getJsonString();
-	//return this->putInTable(this->usersTable,username,json);
+	string json = user->getJsonString();
+	return this->putInTable(this->usersTable,username,json);
 	return true;
+}
+User* Database::getUser(string username) {
+	string json = this->getFromTable(this->usersTable, username);
+	Json::Value jsonValue = this->getJsonValue(json);
+	User* user = new User(username);
+	user->initWithJson(jsonValue);
+	return user;
 }
 
 Message* Database::getMessage(string key){
 
 }
 
+Json::Value Database::getJsonValue(string str) {
+	Json::Reader r = Json::Reader();
+	Json::Value val = Json::Value();
+	r.parse(str,val,false);
+	return val;
+}
 
 

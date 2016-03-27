@@ -85,4 +85,15 @@ Json::Value User::getJson() {
 	return value;
 }
 
+void User::initWithJson(Json::Value value){
+	this->username = value.get("username","").asString();
+	this->password = value.get("password","").asString();
+	this->name = value.get("name","").asString();
+	this->token = value.get("token","").asString();
+	this->locationX = value.get("locationX","").asDouble();
+	this->locationY = value.get("locationY","").asDouble();
+	this->perfilImage = value.get("perfilImage","").asString();
+}
+
+
 

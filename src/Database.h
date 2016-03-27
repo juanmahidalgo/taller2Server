@@ -24,6 +24,7 @@ public:
 	Database();
 
 	string get(string key, string value);
+	string getFromTable(ColumnFamilyHandle* tableHandler, string key);
 	bool put(string key, string value);
 	User* getUser(string key);
 	bool saveUser(User* user);
@@ -31,6 +32,8 @@ public:
 	bool saveMessage(Message* message);
 	virtual ~Database();
 	bool putInTable(ColumnFamilyHandle* tableHandler, string key, string value);
+	Json::Value getJsonValue(string str);
+
 
 
 private:
