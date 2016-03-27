@@ -11,6 +11,7 @@
 #include "rocksdb/db.h"
 #include "rocksdb/slice.h"
 #include "rocksdb/options.h"
+#include <string>
 
 #include "Message.h"
 
@@ -28,7 +29,7 @@ public:
 	bool put(string key, string value);
 	User* getUser(string key);
 	bool saveUser(User* user);
-	Message* getMessage(string key);
+	Message* getMessage(string emisor, string receptor, string messageID);
 	bool saveMessage(Message* message);
 	virtual ~Database();
 	bool putInTable(ColumnFamilyHandle* tableHandler, string key, string value);

@@ -81,7 +81,6 @@ Json::Value User::getJson() {
 	value["locationX"] = this->locationX;
 	value["locationY"] = this->locationY;
 	value["perfilImage"] = this->perfilImage;
-
 	return value;
 }
 

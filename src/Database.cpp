@@ -94,8 +94,24 @@ User* Database::getUser(string username) {
 	return user;
 }
 
-Message* Database::getMessage(string key){
+bool Database::saveMessage(Message* message) {
+	string json = message->getJsonString();
+	string aux = message->getId();
+	aux += message->getSender()->getUsername();
+	aux += message->getReceptor()->getUsername();
+	return this->putInTable(this->messagesTable,aux,json);
+	return true;
+}
 
+Message* Database::getMessage(string emisor, string receptor, string messageID){
+	string aux = messageID;
+	aux+=emisor;
+	aux+=receptor;
+	string json = this->getFromTable(this->messagesTable, aux);
+	Json::Value jsonValue = this->getJsonValue(json);
+	Message* message = new Message(jsonValue);
+	message->initWithJson(jsonValue);
+	return message;
 }
 
 Json::Value Database::getJsonValue(string str) {
@@ -104,5 +120,8 @@ Json::Value Database::getJsonValue(string str) {
 	r.parse(str,val,false);
 	return val;
 }
+
+
+
 
 
