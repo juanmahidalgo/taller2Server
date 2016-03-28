@@ -28,35 +28,13 @@ Database::Database() {
 
 	  assert(s.ok());
 
-	  /*
-	  // Put key-value
-	  s = database->Put(WriteOptions(), "key1", "value");
-	  assert(s.ok());
-	  std::string value;
-	  // get value
-	  s = database->Get(ReadOptions(), "key1", &value);
-	  assert(s.ok());
-	  assert(value == "value");
-
-	  // atomically apply a set of updates
-	  {
-	    WriteBatch batch;
-	    batch.Delete("key1");
-	    batch.Put("key2", value);
-	    s = database->Write(WriteOptions(), &batch);
-	  }
-
-	  s = database->Get(ReadOptions(), "key1", &value);
-	  assert(s.IsNotFound());
-
-	  database->Get(ReadOptions(), "key2", &value);
-	  assert(value == "value");
-
-	*/
 }
 
 Database::~Database() {
-	  delete database;
+	delete this->database;
+	delete this->usersTable;
+	delete this->messagesTable;
+	delete this->conversationsTable;
 }
 
 bool Database::put(string key, string value){
