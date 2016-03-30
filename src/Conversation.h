@@ -8,6 +8,9 @@
 #ifndef CONVERSATION_H_
 #define CONVERSATION_H_
 
+#include <string>
+#include "User.h"
+
 using namespace std;
 
 class Conversation {
@@ -18,10 +21,10 @@ public:
 	void setId(const string& id);
 	int getNumberMessages() const;
 	void setNumberMessages(int numberMessages);
-	const User*& getUser1() const;
-	void setUser1(const User*& user1);
-	const User*& getUser2() const;
-	void setUser2(const User*& user2);
+	User* getUser1();
+	void setUser1(User* user1);
+	User* getUser2();
+	void setUser2(User* user2);
 
 private:
 	string id;

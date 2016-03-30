@@ -32,18 +32,18 @@ void Conversation::setNumberMessages(int numberMessages) {
 	this->numberMessages = numberMessages;
 }
 
-const User*& Conversation::getUser1() const {
+User* Conversation::getUser1() {
 	return user1;
 }
 
-void Conversation::setUser1(const User*& user1) {
+void Conversation::setUser1(User* user1) {
 	this->user1 = user1;
 }
 
-const User*& Conversation::getUser2() const {
+User* Conversation::getUser2()  {
 	return user2;
 }
 
-void Conversation::setUser2(const User*& user2) {
+void Conversation::setUser2( User* user2) {
 	this->user2 = user2;
 }

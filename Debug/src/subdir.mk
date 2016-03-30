@@ -4,7 +4,10 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../src/Conversation.cpp \
 ../src/Database.cpp \
+../src/HttpRequest.cpp \
+../src/HttpRequestHandler.cpp \
 ../src/Message.cpp \
 ../src/Server.cpp \
 ../src/User.cpp \
@@ -15,7 +18,10 @@ C_SRCS += \
 ../src/mongoose.c 
 
 OBJS += \
+./src/Conversation.o \
 ./src/Database.o \
+./src/HttpRequest.o \
+./src/HttpRequestHandler.o \
 ./src/Message.o \
 ./src/Server.o \
 ./src/User.o \
@@ -24,7 +30,10 @@ OBJS += \
 ./src/mongoose.o 
 
 CPP_DEPS += \
+./src/Conversation.d \
 ./src/Database.d \
+./src/HttpRequest.d \
+./src/HttpRequestHandler.d \
 ./src/Message.d \
 ./src/Server.d \
 ./src/User.d \
