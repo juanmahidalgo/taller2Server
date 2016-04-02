@@ -8,6 +8,7 @@ CPP_SRCS += \
 ../src/Database.cpp \
 ../src/HttpRequest.cpp \
 ../src/HttpRequestHandler.cpp \
+../src/Manager.cpp \
 ../src/Message.cpp \
 ../src/Server.cpp \
 ../src/User.cpp \
@@ -22,6 +23,7 @@ OBJS += \
 ./src/Database.o \
 ./src/HttpRequest.o \
 ./src/HttpRequestHandler.o \
+./src/Manager.o \
 ./src/Message.o \
 ./src/Server.o \
 ./src/User.o \
@@ -34,6 +36,7 @@ CPP_DEPS += \
 ./src/Database.d \
 ./src/HttpRequest.d \
 ./src/HttpRequestHandler.d \
+./src/Manager.d \
 ./src/Message.d \
 ./src/Server.d \
 ./src/User.d \

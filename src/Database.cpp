@@ -7,8 +7,7 @@
 
 #include "Database.h"
 
-std::string DBpath = "./database";
-
+std::string DBpath = "/tmp/match";
 
 Database::Database() {
 	Options options;
@@ -17,17 +16,15 @@ Database::Database() {
 	  // open DB
 	Status s = DB::Open(options, DBpath, &database);
 	 // std::cout << s.ToString() << std::endl;
-	if(s.ok()){
+/*	if(s.ok()){
 		s = database->CreateColumnFamily(ColumnFamilyOptions(), "UsersTable", &this->usersTable);
 		assert(s.ok());
 		s = database->CreateColumnFamily(ColumnFamilyOptions(), "messagesTable", &this->messagesTable);
 		assert(s.ok());
 		s = database->CreateColumnFamily(ColumnFamilyOptions(), "conversationsTable", &this->conversationsTable);
 		assert(s.ok());
-	  }
-
+	  }*/
 	  assert(s.ok());
-
 }
 
 Database::~Database() {
@@ -66,7 +63,7 @@ bool Database::saveUser(User* user) {
 }
 User* Database::getUser(string username) {
 	string json = this->getFromTable(this->usersTable, username);
-	Json::Value jsonValue = this->getJsonValue(json);
+	Json::Value jsonValue = this->stringToJsonValue(json);
 	User* user = new User(username);
 	user->initWithJson(jsonValue);
 	return user;
@@ -86,19 +83,24 @@ Message* Database::getMessage(string emisor, string receptor, string messageID){
 	aux+=emisor;
 	aux+=receptor;
 	string json = this->getFromTable(this->messagesTable, aux);
-	Json::Value jsonValue = this->getJsonValue(json);
+	Json::Value jsonValue = this->stringToJsonValue(json);
 	Message* message = new Message(jsonValue);
 	message->initWithJson(jsonValue);
 	return message;
 }
 
-Json::Value Database::getJsonValue(string str) {
+Json::Value Database::stringToJsonValue(string str) {
 	Json::Reader r = Json::Reader();
 	Json::Value val = Json::Value();
 	r.parse(str,val,false);
 	return val;
 }
 
+string JsonValueToSting(Json::Value  json){
+	Json::StreamWriterBuilder builder;
+	builder.settings_["identation"] = "\t";
+	return Json::writeString(builder,json);
+}
 
 
 

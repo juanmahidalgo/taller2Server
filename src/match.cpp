@@ -15,6 +15,8 @@ static struct mg_serve_http_opts s_http_server_opts;
 int main(int argc, char *argv[]) {
 	Server* serv = new Server();
 	serv->init();
+	printf("Server iniciado \n");
+
 	for (;;) {
 		serv->update();
 	}

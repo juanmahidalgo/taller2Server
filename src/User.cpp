@@ -17,6 +17,10 @@ User::User(string name) {
 
 }
 
+User::User(Json::Value value){
+	this->initWithJson(value);
+}
+
 User::~User() {
 	// TODO Auto-generated destructor stub
 }
@@ -39,6 +43,9 @@ void User::setLocationY(double locationY) {
 
 void User::setPassword(const string& password) {
 	this->password = password;
+}
+string User::getPassword() {
+	return this->password;
 }
 
 const string& User::getPerfilImage() const {
@@ -92,6 +99,10 @@ void User::initWithJson(Json::Value value){
 	this->locationX = value.get("locationX","").asDouble();
 	this->locationY = value.get("locationY","").asDouble();
 	this->perfilImage = value.get("perfilImage","").asString();
+}
+
+void User::loginNow(){
+	this->lastTimeConnected = time(0);
 }
 
 

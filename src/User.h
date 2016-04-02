@@ -11,6 +11,8 @@
 
 #include "json/json.h"
 #include <iostream>
+#include <ctime>
+
 
 
 using namespace std;
@@ -20,6 +22,7 @@ using namespace Json;
 class User {
 public:
 	User(string username);
+	User(Json::Value value);
 	virtual ~User();
 	string getName();
 	string getPassword();
@@ -37,6 +40,7 @@ public:
 	string getJsonString();
 	Json::Value getJson();
 	void initWithJson(Json::Value value);
+	void loginNow();
 
 private:
 	string username;
@@ -46,6 +50,8 @@ private:
 	double locationY;
 	string perfilImage;
 	string token;
+	time_t lastTimeConnected;
+
 };
 
 #endif /* USER_H_ */

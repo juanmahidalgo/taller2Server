@@ -23,6 +23,7 @@ using namespace std;
 class Database {
 public:
 	Database();
+	virtual ~Database();
 
 	string get(string key, string value);
 	string getFromTable(ColumnFamilyHandle* tableHandler, string key);
@@ -31,10 +32,9 @@ public:
 	bool saveUser(User* user);
 	Message* getMessage(string emisor, string receptor, string messageID);
 	bool saveMessage(Message* message);
-	virtual ~Database();
 	bool putInTable(ColumnFamilyHandle* tableHandler, string key, string value);
-	Json::Value getJsonValue(string str);
-
+	Json::Value stringToJsonValue(string str);
+	string JsonValueToSting(Json::Value  json);
 
 
 private:
